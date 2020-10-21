@@ -1,0 +1,100 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://rss_reader.gd" type="Script" id=1]
+
+[node name="RSSreader" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.00452
+margin_top = 2.66968
+margin_right = 4.00452
+margin_bottom = 2.66968
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OpenButton" type="Button" parent="."]
+margin_left = 28.0
+margin_top = 14.6832
+margin_right = 75.0
+margin_bottom = 34.6832
+text = "Open"
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[node name="PostsList" type="ItemList" parent="."]
+margin_left = 28.0
+margin_top = 46.0
+margin_right = 293.0
+margin_bottom = 558.0
+
+[node name="DescriptionField" type="TextEdit" parent="."]
+margin_left = 307.0
+margin_top = 46.3213
+margin_right = 1007.0
+margin_bottom = 558.321
+readonly = true
+wrap_enabled = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LinkButton" type="LinkButton" parent="."]
+anchor_right = 0.02
+anchor_bottom = 0.023
+margin_left = 28.0
+margin_top = 569.0
+margin_right = 986.52
+margin_bottom = 569.2
+
+[node name="SettingsButton" type="Button" parent="."]
+margin_left = 90.6738
+margin_top = 14.6832
+margin_right = 153.674
+margin_bottom = 34.6832
+text = "Settings"
+
+[node name="SettingsDialog" type="WindowDialog" parent="."]
+visible = true
+margin_left = 109.0
+margin_top = 103.0
+margin_right = 913.0
+margin_bottom = 263.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="SettingsDialog"]
+margin_left = 27.546
+margin_top = 18.0109
+margin_right = 140.546
+margin_bottom = 32.0109
+text = "The RSS Feed URL"
+
+[node name="RSSURLText" type="LineEdit" parent="SettingsDialog"]
+margin_left = 28.0
+margin_top = 49.0
+margin_right = 759.0
+margin_bottom = 80.0
+
+[node name="ClearButton" type="Button" parent="SettingsDialog"]
+margin_left = 712.413
+margin_top = 95.3517
+margin_right = 756.413
+margin_bottom = 115.352
+text = "Clear"
+
+[node name="SaveButton" type="Button" parent="SettingsDialog"]
+margin_left = 652.629
+margin_top = 95.3517
+margin_right = 693.629
+margin_bottom = 115.352
+text = "Save"
+[connection signal="pressed" from="OpenButton" to="." method="_on_OpenButton_pressed"]
+[connection signal="request_completed" from="HTTPRequest" to="." method="_on_HTTPRequest_request_completed"]
+[connection signal="item_activated" from="PostsList" to="." method="_on_PostsList_item_activated"]
+[connection signal="pressed" from="LinkButton" to="." method="_on_LinkButton_pressed"]
+[connection signal="pressed" from="SettingsButton" to="." method="_on_SettingsButton_pressed"]
+[connection signal="pressed" from="SettingsDialog/ClearButton" to="." method="_on_ClearButton_pressed"]
+[connection signal="pressed" from="SettingsDialog/SaveButton" to="." method="_on_SaveButton_pressed"]
